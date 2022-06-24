@@ -1,42 +1,33 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.math.BigInteger;
-import java.util.Scanner;
+#!/usr/bin/python3
+"""Module that factorize as many numbers as possible
+ into a product of two smaller numbers."""
+from sys import argv
 
-public class ReadFile {
 
-     public static void main(String[] args) {
-            try
-            {
-                File myObj = new File("src/number.txt");
-                Scanner myReader = new Scanner(myObj);
-                while (myReader.hasNextLine())
-                {
-                    String data = myReader.nextLine();
-                    BigInteger a=new BigInteger(data);
-                    System.out.println(a+"="+fac(a)+"*"+a.divide(new BigInteger(String.valueOf(fac(a)))));
-                }
-                myReader.close();
-            } catch (FileNotFoundException e)
-            {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
-            }
+def factorize(value):
+    """"print a simple decomposition of an integer > 1"""
+    i = 2
 
-        }
+    if value < 2:
+        return
+    print()
+    print(value, "<- value-bef")
+    while value % i:
+        i += 1
+    print("{:.0f}={:.0f}*{:.0f}".format(value, value / i, i))
+    print(value, "<- value-aft")
+    print()
 
-        public  static int fac(BigInteger  n)
-        {
-            int i = 2;
-            if(n.compareTo(BigInteger.TWO)<1)
-            {
-                return n.intValue();
-            }
-            while (n.intValue()%i!=0)
-            {
-                i++;
-            }
-            return i;
-        }
-    }
+if len(argv) != 2:
+    exit()
 
+try:
+    with open(argv[1]) as file:
+        line = file.readline()
+
+        while line != "":
+            value = int(line.split('\n')[0])
+            factorize(value)
+            line = file.readline()
+except:
+    pass
