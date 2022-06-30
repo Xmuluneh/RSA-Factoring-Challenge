@@ -115,11 +115,11 @@ def find_prime_factors(n):
         if digits <= 30:
             #print("Using Brent's variant of Pollard's rho factorization " + \
              #     "algorithm to factorise {} ({} digits)".format(n, digits))
-            factors = [brent_factorise(n)]
+            factors = [brent_factorize(n)]
         else:
-            #print("Using Self-Initialising Quadratic Sieve to factorise " + \
+            #print("Using Self-Initializing Quadratic Sieve to factorise " + \
              #     "{} ({} digits)".format(n, digits))
-            #factors = siqs_factorise(n)
+            #factors = siqs_factorize(n)
             pass
 
     prime_factors = []
@@ -132,7 +132,7 @@ def find_prime_factors(n):
 def find_all_prime_factors(n):
     """ Return all prime factors of the given number n.
         Assume that n does not have very small factors and that the global
-        small_primes has already been initialised.
+        small_primes has already been initialise.
     """
     rem = n
     factors = []
@@ -163,7 +163,7 @@ def _pollard_brent_func(c, n, x):
     assert y >= 0 and y < n
     return y
 
-def brent_factorise(n, iterations=None):
+def brent_factorize(n, iterations=None):
     """ Perform Brent's variant of Pollard's rho factorization algorithm to
         attempt to find a non-trivial factor of the given number number, n.
         If iterations > 0, return None if no factors are found within its range
@@ -289,5 +289,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
+
             
